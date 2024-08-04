@@ -29,8 +29,10 @@ jobs:
             aws-secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: ${{ secrets.AWS_REGION }}
             dotnet-version: '8.x'
-            template-file-path: "{{ env.Prj_Root}}/template.yaml" # ./src/NET8NativeMinimalAPI/template.yaml
-            project-directory: "{{ env.Prj_Root}}/" # ./src/NET8NativeMinimalAPI/
+            #template-file-path: "{{ env.Prj_Root }}/template.yaml" # ./src/NET8NativeMinimalAPI/template.yaml
+            template-file-path: ./src/NET8NativeMinimalAPI/template.yaml
+            #project-directory: "{{ env.Prj_Root }}/" # ./src/NET8NativeMinimalAPI/
+            project-directory: ./src/NET8NativeMinimalAPI/
             stack-name: net-8-native
             s3-bucket-name: aws-dotnet-lambda-testing
 
