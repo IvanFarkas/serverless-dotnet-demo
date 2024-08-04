@@ -2,11 +2,11 @@ name: NET 8
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - src/NET8/**
+  # push:
+    # branches:
+      # - main
+    # paths:
+      # - src/NET8/**
 
 jobs:
   build-deploy:

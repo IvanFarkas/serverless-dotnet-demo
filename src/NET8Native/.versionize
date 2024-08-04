@@ -1,0 +1,26 @@
+{
+  "changelogAll": true,
+  "changelog": {
+    "header": "# 3D HD Soft Project Changelog\n\nAll notable changes to this project will be documented in this file. See [VersionizeEx](https://github.com/3DHDSoft/VersionizeEx) for commit guidelines.\n",
+    "projectServer": "https://app.clickup.com/t",
+    "taskIdPattern": "(?<taskToken>CU-(?<taskId>[a-z0-9]{9}))",
+    "includeAllCommits": false,
+    "sections": [
+      {
+        "type": "fix",
+        "section": ":bug: Bug Fixes",
+        "hidden": false
+      },
+      {
+        "type": "feat",
+        "section": ":sparkles: Features",
+        "hidden": false
+      },
+      {
+        "type": "perf",
+        "section": ":rocket: Performance",
+        "hidden": false
+      }
+    ]
+  }
+}

@@ -1,16 +1,13 @@
-﻿using System.Threading.Tasks;
-using Shared.Models;
+﻿using Shared.Models;
 
-namespace Shared.DataAccess
+namespace Shared.DataAccess;
+
+public interface ProductsDAO
 {
-    public interface ProductsDAO
-    {
-        Task<Product?> GetProduct(string id);
+  Task DeleteProduct(string id);
 
-        Task PutProduct(Product product);
+  Task<ProductWrapper> GetAllProducts();
+  Task<Product?> GetProduct(string id);
 
-        Task DeleteProduct(string id);
-
-        Task<ProductWrapper> GetAllProducts();
-    }
+  Task PutProduct(Product product);
 }
