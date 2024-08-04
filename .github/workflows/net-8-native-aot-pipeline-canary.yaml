@@ -2,16 +2,17 @@ name: NET 8 NativeAOT Canary
 
 on:
   workflow_dispatch:
-  schedule:
-  # Run this once a day to check if everything is still working as expected.
-    - cron: "30 23 * * *"
+  # schedule:
+  # # Run this once a day to check if everything is still working as expected.
+    # - cron: "30 23 * * *"
 
 jobs:
-
   build-deploy:
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v2  
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout  
+
         - name: Build and Deploy
           uses: ./.github/actions/sam-build-and-deploy-native
           with:
@@ -25,11 +26,13 @@ jobs:
             s3-bucket-name: aws-dotnet-lambda-testing
 
   build-deploy-arm:
-      # This needs to run on our custom runner which supports ARM. The runner is an EC2 instance manually 
-      # configured in the same AWS account.
+      # This needs to run on our custom runner which supports ARM.
+      # The runner is an EC2 instance manually configured in the same AWS account.
       runs-on: [self-hosted, ARM64]
       steps:
-        - uses: actions/checkout@v2  
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout  
+
         - name: Build and Deploy ARM
           uses: ./.github/actions/sam-build-and-deploy-native-arm
           with:
@@ -46,7 +49,9 @@ jobs:
       needs: build-deploy
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v2
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout
+
         - name: Run Load Tests
           uses: ./.github/actions/run-load-test
           with:
@@ -56,9 +61,10 @@ jobs:
       needs: build-deploy-arm
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v2  
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout  
+
         - name: Run Load Tests
           uses: ./.github/actions/run-load-test
           with:
             api-endpoint: ${{ secrets.API_ENDPOINT_NET_8_NATIVE_ARM }}
-                

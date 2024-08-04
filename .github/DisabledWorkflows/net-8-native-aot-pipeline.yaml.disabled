@@ -20,7 +20,7 @@
 #   build-deploy:
 #       runs-on: ubuntu-latest
 #       steps:
-#         - uses: actions/checkout@v2  
+#         - uses: actions/checkout@v4 # https://github.com/actions/checkout  
 #         - name: Build and Deploy
 #           uses: ./.github/actions/sam-build-and-deploy-native
 #           with:
@@ -37,7 +37,7 @@
 #       needs: build-deploy
 #       runs-on: ubuntu-latest
 #       steps:
-#         - uses: actions/checkout@v2  
+#         - uses: actions/checkout@v4 # https://github.com/actions/checkout  
 #         - name: Run Load Tests
 #           uses: ./.github/actions/run-load-test
 #           with:
@@ -47,7 +47,7 @@
 #       needs: [load-test-x86]
 #       runs-on: ubuntu-latest
 #       steps:
-#         - uses: actions/checkout@v2  
+#         - uses: actions/checkout@v4 # https://github.com/actions/checkout  
 #         - name: Generate reports
 #           uses: ./.github/actions/generate-report
 #           with:

@@ -7,13 +7,14 @@ on:
       - main
     paths:
       - src/NET8/**
-jobs:
 
+jobs:
   build-deploy:
       runs-on: ubuntu-latest
       steps:
-        - name: checkoutRepo
-          uses: actions/checkout@v2  
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout  
+
         - name: Build and Deploy
           uses: ./.github/actions/sam-build-and-deploy
           with:
@@ -30,13 +31,15 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: configure aws credentials
-          uses: aws-actions/configure-aws-credentials@v2
+          uses: aws-actions/configure-aws-credentials@v4 # https://github.com/aws-actions/configure-aws-credentials
           with:
             role-to-assume: ${{ secrets.AWS_ROLE }}
             role-session-name: GitHub_to_AWS_via_FederatedOIDC
             aws-region: ${{ secrets.AWS_REGION }}
-        - name: checkoutRepo
-          uses: actions/checkout@v2  
+
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout  
+
         - name: Run Load Tests
           uses: ./.github/actions/run-load-test
           with:
@@ -47,13 +50,15 @@ jobs:
       runs-on: ubuntu-latest
       steps:      
         - name: configure aws credentials
-          uses: aws-actions/configure-aws-credentials@v2
+          uses: aws-actions/configure-aws-credentials@v4 # https://github.com/aws-actions/configure-aws-credentials
           with:
             role-to-assume: ${{ secrets.AWS_ROLE }}
             role-session-name: GitHub_to_AWS_via_FederatedOIDC
             aws-region: ${{ secrets.AWS_REGION }}
-        - name: checkoutRepo
-          uses: actions/checkout@v2  
+
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout  
+
         - name: Run Load Tests
           uses: ./.github/actions/run-load-test
           with:
@@ -64,13 +69,15 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: configure aws credentials
-          uses: aws-actions/configure-aws-credentials@v2
+          uses: aws-actions/configure-aws-credentials@v4 # https://github.com/aws-actions/configure-aws-credentials
           with:
             role-to-assume: ${{ secrets.AWS_ROLE }}
             role-session-name: GitHub_to_AWS_via_FederatedOIDC
             aws-region: ${{ secrets.AWS_REGION }}
-        - name: checkoutRepo
-          uses: actions/checkout@v2  
+
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout  
+
         - name: Generate reports
           uses: ./.github/actions/generate-report
           with:
@@ -82,13 +89,15 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: configure aws credentials
-          uses: aws-actions/configure-aws-credentials@v2
+          uses: aws-actions/configure-aws-credentials@v4 # https://github.com/aws-actions/configure-aws-credentials
           with:
             role-to-assume: ${{ secrets.AWS_ROLE }}
             role-session-name: GitHub_to_AWS_via_FederatedOIDC
             aws-region: ${{ secrets.AWS_REGION }}
-        - name: checkoutRepo
-          uses: actions/checkout@v2   
+
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout   
+
         - name: Generate reports
           uses: ./.github/actions/generate-report
           with:

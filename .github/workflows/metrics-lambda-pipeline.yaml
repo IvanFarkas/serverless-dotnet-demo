@@ -7,12 +7,14 @@ on:
       - main
     paths:
       - metrics/src/logsToMetrics/**
-jobs:
 
+jobs:
   build-deploy:
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v2  
+        - name: checkout Repo
+          uses: actions/checkout@v4 # https://github.com/actions/checkout
+
         - name: Build and Deploy
           uses: ./.github/actions/sam-build-and-deploy
           with:
