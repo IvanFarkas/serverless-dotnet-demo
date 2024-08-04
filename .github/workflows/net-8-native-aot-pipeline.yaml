@@ -3,17 +3,17 @@ name: NET 8 NativeAOT
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-    paths:
-      - src/NET8Native/**
+    branches: [main]
+    paths: [src/NET8NativeMinimalAPI/**] # NET8Native
 
 env:  
-  AWS_REGION : ${{ secrets.AWS_REGION }}
+  Prj_Root : "./src/NET8NativeMinimalAPI"
+  AWS_REGION : "${{ secrets.AWS_REGION }}"
+  IS_LOAD_TESTS : "${{ vars.IS_LOAD_TESTS }}"
 
 permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
 
 jobs:
   build-deploy:
@@ -29,8 +29,8 @@ jobs:
             aws-secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: ${{ secrets.AWS_REGION }}
             dotnet-version: '8.x'
-            template-file-path: ./src/NET8Native/template.yaml
-            project-directory: ./src/NET8Native/
+            template-file-path: "{{ env.Prj_Root}}/template.yaml" # ./src/NET8NativeMinimalAPI/template.yaml
+            project-directory: "{{ env.Prj_Root}}/" # ./src/NET8NativeMinimalAPI/
             stack-name: net-8-native
             s3-bucket-name: aws-dotnet-lambda-testing
 
@@ -50,6 +50,7 @@ jobs:
 
         - name: Run Load Tests
           uses: ./.github/actions/run-load-test
+          if: env.IS_LOAD_TESTS == 'true'
           with:
             api-endpoint: ${{ secrets.API_ENDPOINT_NET_8_NATIVE_ARM }}
 
@@ -69,6 +70,7 @@ jobs:
 
         - name: Run Load Tests
           uses: ./.github/actions/run-load-test
+          if: env.IS_LOAD_TESTS == 'true'
           with:
             api-endpoint: ${{ secrets.API_ENDPOINT_NET_8_NATIVE_X86 }}
 
@@ -88,6 +90,7 @@ jobs:
 
         - name: Generate reports
           uses: ./.github/actions/generate-report
+          if: env.IS_LOAD_TESTS == 'true'
           with:
             api-endpoint: ${{ secrets.API_ENDPOINT_NET_8_NATIVE_ARM }}
             output-report-file-name: net-8-native-arm-output.md
@@ -108,6 +111,7 @@ jobs:
 
         - name: Generate reports
           uses: ./.github/actions/generate-report
+          if: env.IS_LOAD_TESTS == 'true'
           with:
             api-endpoint: ${{ secrets.API_ENDPOINT_NET_8_NATIVE_X86 }}
             output-report-file-name: net-8-native-x86-output.md

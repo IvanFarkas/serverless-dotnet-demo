@@ -15,6 +15,7 @@ Request secrets from project manager.
 [Environment]::SetEnvironmentVariable('AWS_ROLE', 'secret', 'User')
 [Environment]::SetEnvironmentVariable('API_ENDPOINT_NET_8_NATIVE_X86', 'https://nativearmn.execute-api.us-east-1.amazonaws.com', 'User')
 [Environment]::SetEnvironmentVariable('API_ENDPOINT_NET_8_NATIVE_ARM', 'https://nativearmy.execute-api.us-east-1.amazonaws.com', 'User')
+[Environment]::SetEnvironmentVariable('Is_Load_Tests', 'false', 'User')
 ```
 
 ## GitHub CLI Login
@@ -26,13 +27,14 @@ $Env:GH_PKG_TOKEN | gh auth login --with-token
 ## Setup Project
 
 ```powershell
-cd D:\Projects\AWS\Lambda\LambdaAot
+D:\Projects\AWS\serverless-dotnet-demo
 git remote add origin git@github.com:IvanFarkas/serverless-dotnet-demo.git
 git branch -M main
 
 gh variable set GH_PKG_USER --body "$Env:GH_PKG_USER_IVAN" -R IvanFarkas/serverless-dotnet-demo
 gh variable set GIT_EMAIL --body "$Env:Git_Email" -R IvanFarkas/serverless-dotnet-demo
 gh variable set GIT_USERNAME --body "$Env:Git_Username" -R IvanFarkas/serverless-dotnet-demo
+gh variable set IS_LOAD_TESTS --body "$Env:Is_Load_Tests" -R IvanFarkas/serverless-dotnet-demo
 gh secret set AWS_REGION --body "$Env:AWS_REGION" -R IvanFarkas/serverless-dotnet-demo
 gh secret set AWS_ACCESS_KEY_ID --body "$Env:AWS_ACCESS_KEY_ID" -R IvanFarkas/serverless-dotnet-demo
 gh secret set AWS_SECRET_ACCESS_KEY --body "$Env:AWS_SECRET_ACCESS_KEY" -R IvanFarkas/serverless-dotnet-demo
