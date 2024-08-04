@@ -12,6 +12,7 @@ Request secrets from project manager.
 [Environment]::SetEnvironmentVariable('AWS_REGION', 'us-east-1', 'User')
 [Environment]::SetEnvironmentVariable('AWS_ACCESS_KEY_ID', 'secret', 'User')
 [Environment]::SetEnvironmentVariable('AWS_SECRET_ACCESS_KEY', 'secret', 'User')
+[Environment]::SetEnvironmentVariable('AWS_ROLE', 'secret', 'User')
 [Environment]::SetEnvironmentVariable('API_ENDPOINT_NET_8_NATIVE_X86', 'https://nativearmn.execute-api.us-east-1.amazonaws.com', 'User')
 [Environment]::SetEnvironmentVariable('API_ENDPOINT_NET_8_NATIVE_ARM', 'https://nativearmy.execute-api.us-east-1.amazonaws.com', 'User')
 ```
@@ -35,6 +36,7 @@ gh variable set GIT_USERNAME --body "$Env:Git_Username" -R IvanFarkas/serverless
 gh secret set AWS_REGION --body "$Env:AWS_REGION" -R IvanFarkas/serverless-dotnet-demo
 gh secret set AWS_ACCESS_KEY_ID --body "$Env:AWS_ACCESS_KEY_ID" -R IvanFarkas/serverless-dotnet-demo
 gh secret set AWS_SECRET_ACCESS_KEY --body "$Env:AWS_SECRET_ACCESS_KEY" -R IvanFarkas/serverless-dotnet-demo
+gh secret set AWS_ROLE --body "$Env:AWS_ROLE" -R IvanFarkas/serverless-dotnet-demo
 gh secret set API_ENDPOINT_NET_8_NATIVE_X86 --body "$Env:API_ENDPOINT_NET_8_NATIVE_X86" -R IvanFarkas/serverless-dotnet-demo
 gh secret set API_ENDPOINT_NET_8_NATIVE_ARM --body "$Env:API_ENDPOINT_NET_8_NATIVE_ARM" -R IvanFarkas/serverless-dotnet-demo
 
